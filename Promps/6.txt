@@ -1,0 +1,5 @@
+將時間軸左側 icon 改成漫畫剪影。
+ 
+把大頭貼部分用 google drive url 方式置入，並註解在哪裡置入。
+ 
+ footer 部分增加三個按鈕，分別為「facebook、instergram、github」。

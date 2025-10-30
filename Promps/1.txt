@@ -1,0 +1,53 @@
+【
+姓名:顧緯綸
+個人介紹:靜宜大學學生，致力於自我成長
+
+程式經驗:
+    python:
+        tkinter-發票對獎小工具 // 2022/9~2022/10
+        pygame-乒乓球小遊戲 // 2023/9~2023/10
+        pygame-flappy bird 小遊戲 // 2023/10~2023/11
+        opencv-馬克筆小專案 // 2025/1~2025/3
+
+    C#:
+        Unity-下樓梯小遊戲 // 2024/1~2024/3
+        Unity-貪吃蛇小遊戲 // 2024/8~2024/9
+        Window Form-踩地雷遊戲專案 // 2025/4~2025/6
+        Unity-神棄之森 Forsaken Forest (製作中) // 2025/9~Present
+    
+    JavaScript: 演算法學習中 // 2025/8~Present
+
+社團經驗:
+    熱音社:
+        學習電貝斯 // 2022/9~2023/1
+        學習電吉他 // 2023/12~Present
+        學習電鋼琴 // 2025/9~Present
+
+    極客魂:
+        擔任幹部-技術長 // 2025/9~Present
+
+
+擁有證照:
+    ICDL-Computing 運算思維與 Python 程式設計
+    ICDL-Artificial Intelligence 人工智慧
+】
+
+根據以上資料，幫我生成一個使用 Tailwind CSS 的個人 CV 網站
+(// 後方為時間，製作出以開始時間為基準的時間序)
+.first-color { 
+    background: #155263; 
+}
+    
+.second-color { 
+    background: #ff6f3c; 
+}
+
+.third-color { 
+    background: #ff9a3c; 
+}
+
+.fourth-color { 
+    background: #ffc93c; 
+}
+
+你是一個配色專家，請使用此調色盤套用至網頁
