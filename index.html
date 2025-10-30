@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>顧緯綸 - 個人 CV</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .first-color { background: #155263; }
+        .second-color { background: #ff6f3c; }
+        .third-color { background: #ff9a3c; }
+        .fourth-color { background: #ffc93c; }
+        .gradient-bg { background: linear-gradient(135deg, #155263, #ff6f3c); }
+        
+        /* 時間軸容器 */
+        .timeline-container {
+            position: relative;
+            padding-left: 2rem;
+        }
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 0.5rem;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #155263;
+            border-radius: 20px;
+        }
+
+        /* 時間軸項目 */
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .timeline-item:hover {
+            transform: translateX(12px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        /* 連接線 */
+        .timeline-connector {
+            position: absolute;
+            left: -1.5rem;
+            top: 2rem;
+            width: 2rem;
+            height: 2px;
+            background: #155263;
+            opacity: 0.3;
+        }
+
+        /* 圖示圓圈 */
+        .timeline-icon {
+            position: absolute;
+            left: -2.5rem;
+            top: 0.5rem;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        .timeline-item:hover .timeline-icon {
+            transform: scale(1.3);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        }
+
+        /* 卡片樣式 */
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeInUp {
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        .social-btn {
+            transition: all 0.3s ease;
+        }
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50">
+    <div class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="gradient-bg text-white py-12">
+            <div class="container mx-auto px-4 text-center">
+                <!-- 大頭貼：使用 Google Drive 分享連結（請替換為你的實際圖片連結） -->
+                <!-- 步驟：上傳圖片至 Google Drive → 右鍵「取得連結」→ 設為「任何人皆可檢視」→ 複製 ID 並替換下方 [FILE_ID] -->
+                <!-- 格式：https://drive.google.com/uc?export=view&id=[FILE_ID] https://drive.google.com/file/d/1tCkIKkudngpDzmAHO7C2aAner4gMnk_X/view?usp=drive_link-->
+                <img src="https://drive.google.com/thumbnail?id=1tCkIKkudngpDzmAHO7C2aAner4gMnk_X&sz=w400" 
+                     alt="顧緯綸 大頭貼" 
+                     class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-white shadow-lg object-cover">
+                <!-- 註解：上方 img src 屬性即為置入 Google Drive 圖片的位置 -->
+                <h1 class="text-5xl font-extrabold">顧緯綸</h1>
+                <p class="text-xl mt-3 opacity-90">靜宜大學學生，致力於自我成長</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-4 py-12 flex-grow">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Left Column: Profile, Club Timeline (Desktop Only), Certifications -->
+                <div class="lg:col-span-1 space-y-8">
+                    <!-- Profile -->
+                    <section class="bg-white p-8 rounded-xl shadow-lg card animate-fadeInUp">
+                        <h2 class="text-2xl font-bold second-color text-white p-4 rounded-lg">個人介紹</h2>
+                        <p class="mt-4 text-gray-600 leading-relaxed">靜宜大學學生，熱衷於程式設計與音樂，持續追求技術與個人成長。</p>
+                    </section>
+
+                    <!-- Club Timeline (Only on Desktop) -->
+                    <section class="bg-white p-8 rounded-xl shadow-lg card animate-fadeInUp hidden lg:block" style="animation-delay: 0.2s;">
+                        <h2 class="text-2xl font-bold third-color text-white p-4 rounded-lg">社團經歷時間軸</h2>
+                        <div class="mt-6 timeline-container">
+                            <!-- 熱音社 - 電貝斯 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-icon third-color">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                        <!-- Bass Guitar -->
+                                        <path d="M12 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2s2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+                                        <circle cx="12" cy="4" r="1.5"/>
+                                        <circle cx="12" cy="20" r="1.5"/>
+                                        <path d="M8 7h8v10H8z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg font-semibold">熱音社 | 學習電貝斯</h3>
+                                <p class="text-sm text-gray-500">2022/09 - 2023/01</p>
+                            </div>
+
+                            <!-- 熱音社 - 電吉他 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon third-color">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                        <!-- Electric Guitar -->
+                                        <path d="M19.59 7l-2.59-2.59V2h-2v2.41L12 2l-3 3h2v14h2V5h2v14h2V5h2l3 3-3 3h-2v2h2l3-3 3 3h-2v2h2l-3-3 3-3h-2v-2h2l-3-3z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg font-semibold">熱音社 | 學習電吉他</h3>
+                                <p class="text-sm text-gray-500">2023/12 - Present</p>
+                            </div>
+
+                            <!-- 熱音社 - 電鋼琴 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon third-color">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                        <!-- Keyboard -->
+                                        <rect x="3" y="6" width="18" height="12" rx="1"/>
+                                        <path d="M5 8h2v8H5zM9 8h2v8H9zM13 8h2v8H13zM17 8h2v8H17z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg font-semibold">熱音社 | 學習電鋼琴</h3>
+                                <p class="text-sm text-gray-500">2025/09 - Present</p>
+                            </div>
+
+                            <!-- 極客魂 - 技術長 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon fourth-color">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                        <!-- Star Badge -->
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg font-semibold">極客魂 | 擔任幹部 - 技術長</h3>
+                                <p class="text-sm text-gray-500">2025/09 - Present</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Certifications -->
+                    <section class="bg-white p-8 rounded-xl shadow-lg card animate-fadeInUp" style="animation-delay: 0.4s;">
+                        <h2 class="text-2xl font-bold third-color text-white p-4 rounded-lg">擁有證照</h2>
+                        <ul class="mt-4 list-disc list-inside space-y-3 text-gray-600">
+                            <li class="hover:text-ff6f3c transition-colors">ICDL - Computing 運算思維與 Python 程式設計</li>
+                            <li class="hover:text-ff6f3c transition-colors">ICDL - Artificial Intelligence 人工智慧</li>
+                        </ul>
+                    </section>
+                </div>
+
+                <!-- Right Column: Programming Timeline + Club Timeline (Mobile Only) -->
+                <div class="lg:col-span-2 space-y-8">
+                    <!-- Programming Timeline -->
+                    <section class="bg-white p-8 rounded-xl shadow-lg card animate-fadeInUp" style="animation-delay: 0.6s;">
+                        <h2 class="text-2xl font-bold fourth-color text-white p-4 rounded-lg">程式經歷時間軸</h2>
+                        <div class="mt-6 timeline-container">
+                            <!-- Python-tkinter | 發票兌獎小工具 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-icon second-color">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                        <!-- Receipt/Ticket -->
+                                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-2-8h-2v2h2v2h-2v2h-2v-2H9v2H7v-2H5v-2h2v-2H5V9h2V7h2v2h6V7h2v2h2v2z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg font-semibold">Python-tkinter | 發票兌獎小工具</h3>
+                                <p class="text-sm text-gray-500">2022/09 - 2022/10</p>
+                            </div>
+
+                            <!-- Python-pygame | 乒乓球小遊戲 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                        <!-- Ping Pong -->
+                                        <circle cx="18" cy="6" r="3"/>
+                                        <path d="M4 10h10v4H4z"/>
+                                        <path d="M14 12h6"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg font-semibold">Python-pygame | 乒乓球小遊戲</h3>
+                                <p class="text-sm text-gray-500">2023/09 - 2023/10</p>
+                            </div>
+
+                            <!-- Python-pygame | Flappy Bird 小遊戲 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                        <!-- Bird -->
+                                        <path d="M12 2s-3 4-3 7c0 2 1 3 2 4 1 1 2 2 2 4h2c0-2 1-3 2-4 1-1 2-2 2-4 0-3-3-7-3-7h-4z"/>
+                                        <circle cx="14" cy="7" r="1.5"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg font-semibold">Python-pygame | Flappy Bird 小遊戲</h3>
+                                <p class="text-sm text-gray-500">2023/10 - 2023/11</p>
+                            </div>
+
+                            <!-- C#-Unity | 下樓梯小遊戲 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                        <!-- Stairs Down -->
+                                        <path d="M19 3h-4v4h-4v4h-4v4H3v6h18V3z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg font-semibold">C#-Unity | 下樓梯小遊戲</h3>
+                                <p class="text-sm text-gray-500">2024/01 - 2024/03</p>
+                            </div>
+
+                            <!-- C#-Unity | 貪吃蛇小遊戲 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                        <!-- Snake -->
+                                        <path d="M12 2c-2.67 0-5.18 1.04-7.07 2.93C3.04 6.82 2 9.33 2 12s1.04 5.18 2.93 7.07C6.82 20.96 9.33 22 12 22s5.18-1.04 7.07-2.93C20.96 17.18 22 14.67 22 12s-1.04-5.18-2.93-7.07C17.18 3.04 14.67 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                        <circle cx="15" cy="9" r="1.5"/>
+                                        <path d="M9 12c0 1.66 1.34 3 3 3s3-1.34 3-3"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg font-semibold">C#-Unity | 貪吃蛇小遊戲</h3>
+                                <p class="text-sm text-gray-500">2024/08 - 2024/09</p>
+                            </div>
+
+                            <!-- Python-opencv | 馬克筆小專案 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                        <!-- Marker Pen -->
+                                        <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 000-1.41l-2.34-2.34a.996.996 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg font-semibold">Python-opencv | 馬克筆小專案</h3>
+                                <p class="text-sm text-gray-500">2025/01 - 2025/03</p>
+                            </div>
+
+                            <!-- C#-Windows Form | 踩地雷遊戲專案 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                        <!-- Bomb/Mine -->
+                                        <circle cx="12" cy="12" r="8"/>
+                                        <path d="M12 2v4m0 12v4m-6-14l2.8 2.8m8.4-2.8L14.2 9m-2.8 8.4l2.8 2.8m-8.4-2.8L9 14.2"/>
+                                        <circle cx="12" cy="12" r="3" fill="#fff"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg font-semibold">C#-Windows Form | 踩地雷遊戲專案</h3>
+                                <p class="text-sm text-gray-500">2025/04 - 2025/06</p>
+                            </div>
+
+                            <!-- JavaScript | 演算法學習中 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                        <!-- Algorithm/Graph -->
+                                        <circle cx="6" cy="6" r="2"/>
+                                        <circle cx="18" cy="6" r="2"/>
+                                        <circle cx="12" cy="16" r="2"/>
+                                        <path d="M8 6h8m-4 0v10"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg font-semibold">JavaScript | 演算法學習中</h3>
+                                <p class="text-sm text-gray-500">2025/08 - Present</p>
+                            </div>
+
+                            <!-- C#-Unity | 神棄之森 Forsaken Forest -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                        <!-- Forest Tree -->
+                                        <path d="M12 2L8 7h3v3H7l-3 5h5v5h6v-5h5l-3-5h-4V7h3l-4-5z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg font-semibold">C#-Unity | 神棄之森 Forsaken Forest (製作中)</h3>
+                                <p class="text-sm text-gray-500">2025/09 - Present</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Club Timeline (Only on Mobile) -->
+                    <section class="bg-white p-8 rounded-xl shadow-lg card animate-fadeInUp lg:hidden" style="animation-delay: 0.8s;">
+                        <h2 class="text-2xl font-bold third-color text-white p-4 rounded-lg">社團經歷時間軸</h2>
+                        <div class="mt-6 timeline-container">
+                            <!-- 熱音社 - 電貝斯 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-icon third-color">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                        <path d="M12 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2s2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+                                        <circle cx="12" cy="4" r="1.5"/>
+                                        <circle cx="12" cy="20" r="1.5"/>
+                                        <path d="M8 7h8v10H8z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg font-semibold">熱音社 | 學習電貝斯</h3>
+                                <p class="text-sm text-gray-500">2022/09 - 2023/01</p>
+                            </div>
+
+                            <!-- 熱音社 - 電吉他 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon third-color">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                        <path d="M19.59 7l-2.59-2.59V2h-2v2.41L12 2l-3 3h2v14h2V5h2v14h2V5h2l3 3-3 3h-2v2h2l3-3 3 3h-2v2h2l-3-3 3-3h-2v-2h2l-3-3z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg font-semibold">熱音社 | 學習電吉他</h3>
+                                <p class="text-sm text-gray-500">2023/12 - Present</p>
+                            </div>
+
+                            <!-- 熱音社 - 電鋼琴 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon third-color">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                        <rect x="3" y="6" width="18" height="12" rx="1"/>
+                                        <path d="M5 8h2v8H5zM9 8h2v8H9zM13 8h2v8H13zM17 8h2v8H17z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg font-semibold">熱音社 | 學習電鋼琴</h3>
+                                <p class="text-sm text-gray-500">2025/09 - Present</p>
+                            </div>
+
+                            <!-- 極客魂 - 技術長 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon fourth-color">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg font-semibold">極客魂 | 擔任幹部 - 技術長</h3>
+                                <p class="text-sm text-gray-500">2025/09 - Present</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="first-color text-white py-8">
+            <div class="container mx-auto px-4 text-center">
+                <p class="text-sm mb-4">© 2025 顧緯綸. All rights reserved.</p>
+                <div class="flex justify-center space-x-6">
+                    <!-- Facebook 按鈕 -->
+                    <a href="https://www.facebook.com/profile.php?id=100040718691693" target="_blank" class="social-btn bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                    <!-- Instagram 按鈕 -->
+                    <a href="https://www.instagram.com/tailwheel.cool/" target="_blank" class="social-btn bg-pink-500 hover:bg-pink-600 text-white p-3 rounded-full">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/>
+                        </svg>
+                    </a>
+                    <!-- GitHub 按鈕 -->
+                    <a href="https://github.com/weilungu/resume.github.io.git" target="_blank" class="social-btn bg-gray-800 hover:bg-black text-white p-3 rounded-full">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
