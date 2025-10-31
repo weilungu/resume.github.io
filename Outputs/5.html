@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>顧緯綸 - 個人 CV</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .first-color { background: #155263; }
+        .second-color { background: #ff6f3c; }
+        .third-color { background: #ff9a3c; }
+        .fourth-color { background: #ffc93c; }
+        .gradient-bg { background: linear-gradient(135deg, #155263, #ff6f3c); }
+        .timeline-arc {
+            position: relative;
+            border-right: 4px solid #155263;
+            border-radius: 0 20px 20px 0;
+            padding-right: 1rem;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .timeline-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .timeline-icon {
+            position: absolute;
+            left: -2.5rem;
+            top: 0.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.875rem;
+            transition: transform 0.3s ease;
+        }
+        .timeline-item:hover .timeline-icon {
+            transform: scale(1.2);
+        }
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeInUp {
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50">
+    <div class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="gradient-bg text-white py-12">
+            <div class="container mx-auto px-4 text-center">
+                <img src="https://via.placeholder.com/150" alt="顧緯綸 大頭貼" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-white shadow-lg">
+                <h1 class="text-5xl font-extrabold">顧緯綸</h1>
+                <p class="text-xl mt-3 opacity-90">靜宜大學學生，致力於自我成長</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-4 py-12 flex-grow">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Left Column: Profile, Club Timeline (Desktop Only), Certifications -->
+                <div class="lg:col-span-1 space-y-8">
+                    <!-- Profile -->
+                    <section class="bg-white p-8 rounded-xl shadow-lg card animate-fadeInUp">
+                        <h2 class="text-2xl font-bold second-color text-white p-4 rounded-lg">個人介紹</h2>
+                        <p class="mt-4 text-gray-600 leading-relaxed">靜宜大學學生，熱衷於程式設計與音樂，持續追求技術與個人成長。</p>
+                    </section>
+
+                    <!-- Club Timeline (Only on Desktop) -->
+                    <section class="bg-white p-8 rounded-xl shadow-lg card animate-fadeInUp hidden lg:block" style="animation-delay: 0.2s;">
+                        <h2 class="text-2xl font-bold third-color text-white p-4 rounded-lg">社團經歷時間軸</h2>
+                        <div class="mt-6 timeline-arc">
+                            <div class="timeline-item bg-gray-50 p-4 rounded-lg">
+                                <div class="timeline-icon third-color">Guitar</div>
+                                <h3 class="text-lg font-semibold">熱音社 | 學習電貝斯</h3>
+                                <p class="text-sm text-gray-500">2022/09 - 2023/01</p>
+                            </div>
+                            <div class="timeline-item bg-gray-50 p-4 rounded-lg">
+                                <div class="timeline-icon third-color">Guitar</div>
+                                <h3 class="text-lg font-semibold">熱音社 | 學習電吉他</h3>
+                                <p class="text-sm text-gray-500">2023/12 - Present</p>
+                            </div>
+                            <div class="timeline-item bg-gray-50 p-4 rounded-lg">
+                                <div class="timeline-icon third-color">Guitar</div>
+                                <h3 class="text-lg font-semibold">熱音社 | 學習電鋼琴</h3>
+                                <p class="text-sm text-gray-500">2025/09 - Present</p>
+                            </div>
+                            <div class="timeline-item bg-gray-50 p-4 rounded-lg">
+                                <div class="timeline-icon fourth-color">Leader</div>
+                                <h3 class="text-lg font-semibold">極客魂 | 擔任幹部 - 技術長</h3>
+                                <p class="text-sm text-gray-500">2025/09 - Present</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Certifications -->
+                    <section class="bg-white p-8 rounded-xl shadow-lg card animate-fadeInUp" style="animation-delay: 0.4s;">
+                        <h2 class="text-2xl font-bold third-color text-white p-4 rounded-lg">擁有證照</h2>
+                        <ul class="mt-4 list-disc list-inside space-y-3 text-gray-600">
+                            <li class="hover:text-ff6f3c transition-colors">ICDL - Computing 運算思維與 Python 程式設計</li>
+                            <li class="hover:text-ff6f3c transition-colors">ICDL - Artificial Intelligence 人工智慧</li>
+                        </ul>
+                    </section>
+                </div>
+
+                <!-- Right Column: Programming Timeline + Club Timeline (Mobile Only) -->
+                <div class="lg:col-span-2 space-y-8">
+                    <!-- Programming Timeline -->
+                    <section class="bg-white p-8 rounded-xl shadow-lg card animate-fadeInUp" style="animation-delay: 0.6s;">
+                        <h2 class="text-2xl font-bold fourth-color text-white p-4 rounded-lg">程式經歷時間軸</h2>
+                        <div class="mt-6 timeline-arc">
+                            <div class="timeline-item bg-gray-50 p-4 rounded-lg">
+                                <div class="timeline-icon second-color">Computer</div>
+                                <h3 class="text-lg font-semibold">Python-tkinter | 發票兌獎小工具</h3>
+                                <p class="text-sm text-gray-500">2022/09 - 2022/10</p>
+                            </div>
+                            <div class="timeline-item bg-gray-50 p-4 rounded-lg">
+                                <div class="timeline-icon second-color">Computer</div>
+                                <h3 class="text-lg font-semibold">Python-pygame | 乒乓球小遊戲</h3>
+                                <p class="text-sm text-gray-500">2023/09 - 2023/10</p>
+                            </div>
+                            <div class="timeline-item bg-gray-50 p-4 rounded-lg">
+                                <div class="timeline-icon second-color">Computer</div>
+                                <h3 class="text-lg font-semibold">Python-pygame | Flappy Bird 小遊戲</h3>
+                                <p class="text-sm text-gray-500">2023/10 - 2023/11</p>
+                            </div>
+                            <div class="timeline-item bg-gray-50 p-4 rounded-lg">
+                                <div class="timeline-icon second-color">Computer</div>
+                                <h3 class="text-lg font-semibold">C#-Unity | 下樓梯小遊戲</h3>
+                                <p class="text-sm text-gray-500">2024/01 - 2024/03</p>
+                            </div>
+                            <div class="timeline-item bg-gray-50 p-4 rounded-lg">
+                                <div class="timeline-icon second-color">Computer</div>
+                                <h3 class="text-lg font-semibold">C#-Unity | 貪吃蛇小遊戲</h3>
+                                <p class="text-sm text-gray-500">2024/08 - 2024/09</p>
+                            </div>
+                            <div class="timeline-item bg-gray-50 p-4 rounded-lg">
+                                <div class="timeline-icon second-color">Computer</div>
+                                <h3 class="text-lg font-semibold">Python-opencv | 馬克筆小專案</h3>
+                                <p class="text-sm text-gray-500">2025/01 - 2025/03</p>
+                            </div>
+                            <div class="timeline-item bg-gray-50 p-4 rounded-lg">
+                                <div class="timeline-icon second-color">Computer</div>
+                                <h3 class="text-lg font-semibold">C#-Windows Form | 踩地雷遊戲專案</h3>
+                                <p class="text-sm text-gray-500">2025/04 - 2025/06</p>
+                            </div>
+                            <div class="timeline-item bg-gray-50 p-4 rounded-lg">
+                                <div class="timeline-icon second-color">Computer</div>
+                                <h3 class="text-lg font-semibold">JavaScript | 演算法學習中</h3>
+                                <p class="text-sm text-gray-500">2025/08 - Present</p>
+                            </div>
+                            <div class="timeline-item bg-gray-50 p-4 rounded-lg">
+                                <div class="timeline-icon second-color">Computer</div>
+                                <h3 class="text-lg font-semibold">C#-Unity | 神棄之森 Forsaken Forest (製作中)</h3>
+                                <p class="text-sm text-gray-500">2025/09 - Present</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Club Timeline (Only on Mobile) -->
+                    <section class="bg-white p-8 rounded-xl shadow-lg card animate-fadeInUp lg:hidden" style="animation-delay: 0.8s;">
+                        <h2 class="text-2xl font-bold third-color text-white p-4 rounded-lg">社團經歷時間軸</h2>
+                        <div class="mt-6 timeline-arc">
+                            <div class="timeline-item bg-gray-50 p-4 rounded-lg">
+                                <div class="timeline-icon third-color">Guitar</div>
+                                <h3 class="text-lg font-semibold">熱音社 | 學習電貝斯</h3>
+                                <p class="text-sm text-gray-500">2022/09 - 2023/01</p>
+                            </div>
+                            <div class="timeline-item bg-gray-50 p-4 rounded-lg">
+                                <div class="timeline-icon third-color">Guitar</div>
+                                <h3 class="text-lg font-semibold">熱音社 | 學習電吉他</h3>
+                                <p class="text-sm text-gray-500">2023/12 - Present</p>
+                            </div>
+                            <div class="timeline-item bg-gray-50 p-4 rounded-lg">
+                                <div class="timeline-icon third-color">Guitar</div>
+                                <h3 class="text-lg font-semibold">熱音社 | 學習電鋼琴</h3>
+                                <p class="text-sm text-gray-500">2025/09 - Present</p>
+                            </div>
+                            <div class="timeline-item bg-gray-50 p-4 rounded-lg">
+                                <div class="timeline-icon fourth-color">Leader</div>
+                                <h3 class="text-lg font-semibold">極客魂 | 擔任幹部 - 技術長</h3>
+                                <p class="text-sm text-gray-500">2025/09 - Present</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="first-color text-white py-6">
+            <div class="container mx-auto px-4 text-center">
+                <p class="text-sm">© 2025 顧緯綸. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
