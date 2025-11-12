@@ -14,6 +14,18 @@
         .fourth-color { background: #ffc93c; }
         .gradient-bg { background: linear-gradient(135deg, #155263, #ff6f3c); }
         
+        /* 防止瀏覽器在聚焦表單欄位時自動放大縮放（行動與桌機皆適用） */
+        html {
+            text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+            /* 穩定保留捲軸空間，避免出現/消失造成版面寬度改變（桌機常見）*/
+            scrollbar-gutter: stable;
+        }
+        input, select, textarea, button {
+            font-size: 16px; /* >=16px 可避免 iOS/部分瀏覽器自動縮放 */
+        }
+        
         /* 時間軸容器 */
         .timeline-container {
             position: relative;
@@ -609,7 +621,7 @@
                         <div class="pt-2">
                             <button 
                                 type="submit" 
-                                class="w-full second-color text-white font-bold py-4 px-6 rounded-lg hover:bg-orange-600 transition-all duration-300 transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-orange-300"
+                                class="w-full second-color text-white font-bold py-4 px-6 rounded-lg hover:bg-orange-600 transition-all duration-300 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-orange-300"
                             >
                                 <i class="fas fa-paper-plane mr-2"></i>
                                 Send Message
@@ -657,20 +669,16 @@
                     // 當向上滾動且滾動位置超過 header 高度時，顯示導覽列
                     if (scrollTop < lastScrollTop && scrollTop > headerHeight) {
                         navbar.addClass('show');
-                        $('body').css('padding-top', navbar.outerHeight() + 'px');
                     } else if (scrollTop <= headerHeight) {
                         // 在 header 範圍內隱藏導覽列
                         navbar.removeClass('show');
-                        $('body').css('padding-top', '0');
                     } else if (scrollTop > lastScrollTop) {
                         // 向下滾動時隱藏導覽列
                         navbar.removeClass('show');
-                        $('body').css('padding-top', '0');
                     }
                 } else {
                     // 手機模式下永不顯示浮動導覽列
                     navbar.removeClass('show');
-                    $('body').css('padding-top', '0');
                 }
                 
                 lastScrollTop = scrollTop;
