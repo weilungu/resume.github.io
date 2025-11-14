@@ -250,7 +250,7 @@
 <body class="font-sans text-gray-800 bg-gray-50">
     <div class="min-h-screen flex flex-col">
         <!-- Header -->
-        <header class="gradient-bg text-white py-12">
+        <header class="gradient-bg text-white py-12 relative">
             <div class="container mx-auto px-4 text-center">
                 <!-- 大頭貼：使用 Google Drive 分享連結（請替換為你的實際圖片連結） -->
                 <!-- 步驟：上傳圖片至 Google Drive → 右鍵「取得連結」→ 設為「任何人皆可檢視」→ 複製 ID 並替換下方 [FILE_ID] -->
@@ -261,6 +261,12 @@
                 <!-- 註解：上方 img src 屬性即為置入 Google Drive 圖片的位置 -->
                 <h1 class="text-5xl font-extrabold">顧緯綸</h1>
                 <p class="text-xl mt-3 opacity-90">靜宜大學學生，致力於自我成長</p>
+                
+                <!-- CTA 聯絡我按鈕 -->
+                <button id="contactCTA" class="mt-6 bg-white text-orange-500 font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 hover:bg-gray-100">
+                    <i class="fas fa-envelope mr-2"></i>
+                    聯絡我
+                </button>
             </div>
         </header>
 
@@ -570,68 +576,6 @@
             </div>
         </main>
 
-        <!-- Contact Form Section -->
-        <section id="contact" class="bg-gradient-to-br from-gray-100 to-gray-200 py-16">
-            <div class="container mx-auto px-4">
-                <div class="max-w-2xl mx-auto">
-                    <h2 class="text-4xl font-bold text-center mb-3 text-gray-800">聯絡我</h2>
-                    <p class="text-center text-gray-600 mb-10">有任何問題或合作機會嗎？歡迎與我聯繫！</p>
-                    
-                    <form class="bg-white rounded-2xl shadow-xl p-8 md:p-10 space-y-6">
-                        <!-- Name Input -->
-                        <div class="space-y-2">
-                            <label for="name" class="block text-sm font-semibold text-gray-700">姓名</label>
-                            <input 
-                                type="text" 
-                                id="name" 
-                                name="name" 
-                                placeholder="Name" 
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 outline-none hover:border-gray-400"
-                                required
-                            >
-                        </div>
-
-                        <!-- Email Input -->
-                        <div class="space-y-2">
-                            <label for="email" class="block text-sm font-semibold text-gray-700">電子郵件</label>
-                            <input 
-                                type="email" 
-                                id="email" 
-                                name="email" 
-                                placeholder="Email" 
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 outline-none hover:border-gray-400"
-                                required
-                            >
-                        </div>
-
-                        <!-- Message Input -->
-                        <div class="space-y-2">
-                            <label for="message" class="block text-sm font-semibold text-gray-700">訊息</label>
-                            <textarea 
-                                id="message" 
-                                name="message" 
-                                placeholder="Message" 
-                                rows="6" 
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 outline-none resize-none hover:border-gray-400"
-                                required
-                            ></textarea>
-                        </div>
-
-                        <!-- Submit Button -->
-                        <div class="pt-2">
-                            <button 
-                                type="submit" 
-                                class="w-full second-color text-white font-bold py-4 px-6 rounded-lg hover:bg-orange-600 transition-all duration-300 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-orange-300"
-                            >
-                                <i class="fas fa-paper-plane mr-2"></i>
-                                Send Message
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
-
         <!-- Footer -->
         <footer class="first-color text-white py-8">
             <div class="container mx-auto px-4 text-center">
@@ -652,6 +596,112 @@
                 </div>
             </div>
         </footer>
+    </div>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
+            <!-- Modal Header -->
+            <div class="gradient-bg text-white p-6 rounded-t-2xl">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-3xl font-bold flex items-center">
+                        <i class="fas fa-envelope mr-3"></i>
+                        聯絡我
+                    </h2>
+                    <button id="closeModal" class="text-white hover:text-gray-300 transition-colors">
+                        <i class="fas fa-times text-2xl"></i>
+                    </button>
+                </div>
+                <p class="mt-2 opacity-90">有任何問題或合作機會嗎？歡迎與我聯繫！</p>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6 md:p-8 max-h-[60vh] overflow-y-auto">
+                <form id="contactForm" class="space-y-6">
+                    <!-- Name Input -->
+                    <div class="space-y-2">
+                        <label for="modalName" class="block text-sm font-semibold text-gray-700">姓名 *</label>
+                        <input 
+                            type="text" 
+                            id="modalName" 
+                            name="name" 
+                            placeholder="請輸入您的姓名" 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 outline-none hover:border-gray-400"
+                            required
+                        >
+                    </div>
+
+                    <!-- Email Input -->
+                    <div class="space-y-2">
+                        <label for="modalEmail" class="block text-sm font-semibold text-gray-700">電子郵件 *</label>
+                        <input 
+                            type="email" 
+                            id="modalEmail" 
+                            name="email" 
+                            placeholder="請輸入您的電子郵件" 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 outline-none hover:border-gray-400"
+                            required
+                        >
+                    </div>
+
+                    <!-- Phone Input (Optional) -->
+                    <div class="space-y-2">
+                        <label for="modalPhone" class="block text-sm font-semibold text-gray-700">聯絡電話</label>
+                        <input 
+                            type="tel" 
+                            id="modalPhone" 
+                            name="phone" 
+                            placeholder="請輸入您的聯絡電話（選填）" 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 outline-none hover:border-gray-400"
+                        >
+                    </div>
+
+                    <!-- Subject Input -->
+                    <div class="space-y-2">
+                        <label for="modalSubject" class="block text-sm font-semibold text-gray-700">主旨 *</label>
+                        <input 
+                            type="text" 
+                            id="modalSubject" 
+                            name="subject" 
+                            placeholder="請輸入主旨" 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 outline-none hover:border-gray-400"
+                            required
+                        >
+                    </div>
+
+                    <!-- Message Input -->
+                    <div class="space-y-2">
+                        <label for="modalMessage" class="block text-sm font-semibold text-gray-700">訊息 *</label>
+                        <textarea 
+                            id="modalMessage" 
+                            name="message" 
+                            placeholder="請輸入您的訊息內容..." 
+                            rows="5" 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 outline-none resize-none hover:border-gray-400"
+                            required
+                        ></textarea>
+                    </div>
+
+                    <!-- Submit Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-3 pt-4">
+                        <button 
+                            type="submit" 
+                            class="flex-1 second-color text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-600 transition-all duration-300 transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-orange-300"
+                        >
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            發送訊息
+                        </button>
+                        <button 
+                            type="button" 
+                            id="cancelModal"
+                            class="flex-1 sm:flex-none bg-gray-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-600 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-gray-300"
+                        >
+                            取消
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -780,6 +830,71 @@
                         }
                     }
                 }
+            });
+
+            // Modal 控制功能
+            const $modal = $('#contactModal');
+            const $contactCTA = $('#contactCTA');
+            const $closeModal = $('#closeModal');
+            const $cancelModal = $('#cancelModal');
+            const $contactForm = $('#contactForm');
+
+            // 開啟 Modal
+            function openModal() {
+                $modal.removeClass('hidden').addClass('flex');
+                $('body').css('overflow', 'hidden'); // 防止背景滾動
+            }
+
+            // 關閉 Modal
+            function closeModal() {
+                $modal.addClass('hidden').removeClass('flex');
+                $('body').css('overflow', 'auto'); // 恢復背景滾動
+            }
+
+            // CTA 按鈕點擊事件
+            $contactCTA.on('click', openModal);
+
+            // 關閉按鈕點擊事件
+            $closeModal.on('click', closeModal);
+            $cancelModal.on('click', closeModal);
+
+            // 點擊背景關閉 Modal
+            $modal.on('click', function(e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+
+            // ESC 鍵關閉 Modal
+            $(document).on('keydown', function(e) {
+                if (e.key === 'Escape' && $modal.hasClass('flex')) {
+                    closeModal();
+                }
+            });
+
+            // 表單提交處理
+            $contactForm.on('submit', function(e) {
+                e.preventDefault();
+                
+                // 獲取表單數據
+                const formData = {
+                    name: $('#modalName').val(),
+                    email: $('#modalEmail').val(),
+                    phone: $('#modalPhone').val(),
+                    subject: $('#modalSubject').val(),
+                    message: $('#modalMessage').val()
+                };
+
+                // 這裡可以添加實際的表單提交邏輯
+                // 例如：發送到伺服器或其他處理
+                console.log('表單數據：', formData);
+                
+                // 顯示成功訊息（暫時用 alert，實際應用可以用更美觀的通知）
+                alert('訊息已送出！感謝您的聯繫，我會盡快回覆您。');
+                
+                // 重置表單並關閉 Modal
+                this.reset();
+                closeModal();
             });
         });
     </script>
