@@ -599,7 +599,7 @@
     </div>
 
     <!-- Contact Modal -->
-    <div id="contactModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+    <div id="contactModal" class="fixed inset-0 bg-black bg-opacity-50 z-[9999] hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
             <!-- Modal Header -->
             <div class="gradient-bg text-white p-6 rounded-t-2xl">
@@ -620,7 +620,7 @@
                 <form id="contactForm" class="space-y-6">
                     <!-- Name Input -->
                     <div class="space-y-2">
-                        <label for="modalName" class="block text-sm font-semibold text-gray-700">姓名 *</label>
+                        <label for="modalName" class="block text-sm font-semibold text-gray-700">姓名 <span class="text-red-500">*</span></label>
                         <input 
                             type="text" 
                             id="modalName" 
@@ -633,7 +633,7 @@
 
                     <!-- Email Input -->
                     <div class="space-y-2">
-                        <label for="modalEmail" class="block text-sm font-semibold text-gray-700">電子郵件 *</label>
+                        <label for="modalEmail" class="block text-sm font-semibold text-gray-700">電子郵件 <span class="text-red-500">*</span></label>
                         <input 
                             type="email" 
                             id="modalEmail" 
@@ -658,7 +658,7 @@
 
                     <!-- Subject Input -->
                     <div class="space-y-2">
-                        <label for="modalSubject" class="block text-sm font-semibold text-gray-700">主旨 *</label>
+                        <label for="modalSubject" class="block text-sm font-semibold text-gray-700">主旨 <span class="text-red-500">*</span></label>
                         <input 
                             type="text" 
                             id="modalSubject" 
@@ -671,7 +671,7 @@
 
                     <!-- Message Input -->
                     <div class="space-y-2">
-                        <label for="modalMessage" class="block text-sm font-semibold text-gray-700">訊息 *</label>
+                        <label for="modalMessage" class="block text-sm font-semibold text-gray-700">訊息 <span class="text-red-500">*</span></label>
                         <textarea 
                             id="modalMessage" 
                             name="message" 
@@ -841,6 +841,14 @@
 
             // 開啟 Modal
             function openModal() {
+                // 如果漢堡選單是開啟的，先關閉它
+                if (mobileMenu && mobileMenu.classList.contains('open')) {
+                    mobileMenu.classList.remove('open');
+                    if (hamburgerBtn) {
+                        hamburgerBtn.classList.remove('active');
+                    }
+                }
+                
                 $modal.removeClass('hidden').addClass('flex');
                 $('body').css('overflow', 'hidden'); // 防止背景滾動
             }
