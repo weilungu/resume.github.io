@@ -29,6 +29,25 @@
 - Unity Certified Associate
 - 資策會 AIoT 研習證書
 
+## 技能專長
+- Python：90%
+- JavaScript：80%
+- C#：75%
+- HTML/CSS：50%
+- SQL：50%
+
+- Unity 2D：90%
+- tkinter：85%
+- pygame：85%
+- Pandas：84%
+- OpenCV：81%
+
+- Vue：79%
+- Flask：75%
+- OpenAI API：70%
+- Charts：70%
+- Django：65%
+
 ## 程式經歷時間軸
 - Python-tkinter | 發票兌獎小工具 (2022/09 - 2022/10)
 - Python-pygame | 乒乓球小遊戲 (2023/09 - 2023/10)
