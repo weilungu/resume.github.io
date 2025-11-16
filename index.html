@@ -245,6 +245,55 @@
         }
 
         /* 桌面版向上滑動導覽列樣式（改為沿用 #navbar，故移除 #desktop-navbar 樣式） */
+        
+        /* 圓形技能圖表樣式 */
+        .skill-circle {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1rem;
+        }
+        
+        .skill-circle svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+        
+        .skill-circle .background {
+            fill: none;
+            stroke: #e5e7eb;
+            stroke-width: 8;
+        }
+        
+        .skill-circle .progress {
+            fill: none;
+            stroke-width: 8;
+            stroke-linecap: round;
+            transition: stroke-dasharray 2s ease-in-out;
+        }
+        
+        .skill-circle .progress.orange { stroke: #ff6f3c; }
+        .skill-circle .progress.blue { stroke: #155263; }
+        .skill-circle .progress.green { stroke: #10b981; }
+        
+        .skill-name {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-weight: 600;
+            color: #374151;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+        
+        @keyframes skillAnimation {
+            from {
+                stroke-dasharray: 0, 314.16;
+            }
+        }
     </style>
 </head>
 <body class="font-sans text-gray-800 bg-gray-50">
@@ -534,10 +583,181 @@
                     </section>
                 </div>
 
-                <!-- Right Column: Programming Timeline + Club Timeline (Mobile Only) -->
+                <!-- Right Column: Skills + Programming Timeline + Club Timeline (Mobile Only) -->
                 <div class="lg:col-span-2 space-y-8">
+                    <!-- Skills Section (Desktop Only) -->
+                    <section class="bg-white p-8 rounded-xl shadow-lg card animate-fadeInUp hidden lg:block" style="animation-delay: 0.6s;">
+                        <h2 class="text-2xl font-bold fourth-color text-white p-4 rounded-lg mb-6">技能專長</h2>
+                        <div class="grid grid-cols-5 gap-6">
+                            <!-- Python: 90% -->
+                            <div class="skill-item">
+                                <div class="skill-circle">
+                                    <svg viewBox="0 0 100 100">
+                                        <circle class="background" cx="50" cy="50" r="45"></circle>
+                                        <circle class="progress orange" cx="50" cy="50" r="45" stroke-dasharray="254.34, 314.16"></circle>
+                                    </svg>
+                                    <div class="skill-name">Python</div>
+                                </div>
+                            </div>
+                            
+                            <!-- JavaScript: 80% -->
+                            <div class="skill-item">
+                                <div class="skill-circle">
+                                    <svg viewBox="0 0 100 100">
+                                        <circle class="background" cx="50" cy="50" r="45"></circle>
+                                        <circle class="progress orange" cx="50" cy="50" r="45" stroke-dasharray="226.08, 314.16"></circle>
+                                    </svg>
+                                    <div class="skill-name">JavaScript</div>
+                                </div>
+                            </div>
+                            
+                            <!-- C#: 75% -->
+                            <div class="skill-item">
+                                <div class="skill-circle">
+                                    <svg viewBox="0 0 100 100">
+                                        <circle class="background" cx="50" cy="50" r="45"></circle>
+                                        <circle class="progress orange" cx="50" cy="50" r="45" stroke-dasharray="211.95, 314.16"></circle>
+                                    </svg>
+                                    <div class="skill-name">C#</div>
+                                </div>
+                            </div>
+                            
+                            <!-- HTML/CSS: 50% -->
+                            <div class="skill-item">
+                                <div class="skill-circle">
+                                    <svg viewBox="0 0 100 100">
+                                        <circle class="background" cx="50" cy="50" r="45"></circle>
+                                        <circle class="progress orange" cx="50" cy="50" r="45" stroke-dasharray="141.30, 314.16"></circle>
+                                    </svg>
+                                    <div class="skill-name">HTML/CSS</div>
+                                </div>
+                            </div>
+                            
+                            <!-- SQL: 50% -->
+                            <div class="skill-item">
+                                <div class="skill-circle">
+                                    <svg viewBox="0 0 100 100">
+                                        <circle class="background" cx="50" cy="50" r="45"></circle>
+                                        <circle class="progress orange" cx="50" cy="50" r="45" stroke-dasharray="141.30, 314.16"></circle>
+                                    </svg>
+                                    <div class="skill-name">SQL</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Unity 2D: 90% -->
+                            <div class="skill-item">
+                                <div class="skill-circle">
+                                    <svg viewBox="0 0 100 100">
+                                        <circle class="background" cx="50" cy="50" r="45"></circle>
+                                        <circle class="progress blue" cx="50" cy="50" r="45" stroke-dasharray="254.34, 314.16"></circle>
+                                    </svg>
+                                    <div class="skill-name">Unity 2D</div>
+                                </div>
+                            </div>
+                            
+                            <!-- tkinter: 85% -->
+                            <div class="skill-item">
+                                <div class="skill-circle">
+                                    <svg viewBox="0 0 100 100">
+                                        <circle class="background" cx="50" cy="50" r="45"></circle>
+                                        <circle class="progress blue" cx="50" cy="50" r="45" stroke-dasharray="240.21, 314.16"></circle>
+                                    </svg>
+                                    <div class="skill-name">tkinter</div>
+                                </div>
+                            </div>
+                            
+                            <!-- pygame: 85% -->
+                            <div class="skill-item">
+                                <div class="skill-circle">
+                                    <svg viewBox="0 0 100 100">
+                                        <circle class="background" cx="50" cy="50" r="45"></circle>
+                                        <circle class="progress blue" cx="50" cy="50" r="45" stroke-dasharray="240.21, 314.16"></circle>
+                                    </svg>
+                                    <div class="skill-name">pygame</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Pandas: 84% -->
+                            <div class="skill-item">
+                                <div class="skill-circle">
+                                    <svg viewBox="0 0 100 100">
+                                        <circle class="background" cx="50" cy="50" r="45"></circle>
+                                        <circle class="progress blue" cx="50" cy="50" r="45" stroke-dasharray="237.38, 314.16"></circle>
+                                    </svg>
+                                    <div class="skill-name">Pandas</div>
+                                </div>
+                            </div>
+                            
+                            <!-- OpenCV: 81% -->
+                            <div class="skill-item">
+                                <div class="skill-circle">
+                                    <svg viewBox="0 0 100 100">
+                                        <circle class="background" cx="50" cy="50" r="45"></circle>
+                                        <circle class="progress blue" cx="50" cy="50" r="45" stroke-dasharray="228.91, 314.16"></circle>
+                                    </svg>
+                                    <div class="skill-name">OpenCV</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Vue: 79% -->
+                            <div class="skill-item">
+                                <div class="skill-circle">
+                                    <svg viewBox="0 0 100 100">
+                                        <circle class="background" cx="50" cy="50" r="45"></circle>
+                                        <circle class="progress green" cx="50" cy="50" r="45" stroke-dasharray="223.25, 314.16"></circle>
+                                    </svg>
+                                    <div class="skill-name">Vue</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Flask: 75% -->
+                            <div class="skill-item">
+                                <div class="skill-circle">
+                                    <svg viewBox="0 0 100 100">
+                                        <circle class="background" cx="50" cy="50" r="45"></circle>
+                                        <circle class="progress green" cx="50" cy="50" r="45" stroke-dasharray="211.95, 314.16"></circle>
+                                    </svg>
+                                    <div class="skill-name">Flask</div>
+                                </div>
+                            </div>
+                            
+                            <!-- OpenAI API: 70% -->
+                            <div class="skill-item">
+                                <div class="skill-circle">
+                                    <svg viewBox="0 0 100 100">
+                                        <circle class="background" cx="50" cy="50" r="45"></circle>
+                                        <circle class="progress green" cx="50" cy="50" r="45" stroke-dasharray="197.82, 314.16"></circle>
+                                    </svg>
+                                    <div class="skill-name">OpenAI API</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Charts: 70% -->
+                            <div class="skill-item">
+                                <div class="skill-circle">
+                                    <svg viewBox="0 0 100 100">
+                                        <circle class="background" cx="50" cy="50" r="45"></circle>
+                                        <circle class="progress green" cx="50" cy="50" r="45" stroke-dasharray="197.82, 314.16"></circle>
+                                    </svg>
+                                    <div class="skill-name">Charts</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Django: 65% -->
+                            <div class="skill-item">
+                                <div class="skill-circle">
+                                    <svg viewBox="0 0 100 100">
+                                        <circle class="background" cx="50" cy="50" r="45"></circle>
+                                        <circle class="progress green" cx="50" cy="50" r="45" stroke-dasharray="183.69, 314.16"></circle>
+                                    </svg>
+                                    <div class="skill-name">Django</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
                     <!-- Programming Timeline -->
-                    <section id="programming" class="bg-white p-8 rounded-xl shadow-lg card animate-fadeInUp" style="animation-delay: 0.6s;">
+                    <section id="programming" class="bg-white p-8 rounded-xl shadow-lg card animate-fadeInUp" style="animation-delay: 0.8s;">
                         <h2 class="text-2xl font-bold fourth-color text-white p-4 rounded-lg">程式經歷時間軸</h2>
                         <div class="mt-6 timeline-container">
                             <!-- Python-tkinter | 發票兌獎小工具 -->
