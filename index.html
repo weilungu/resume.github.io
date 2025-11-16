@@ -8,11 +8,111 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <style>
-        .first-color { background: #155263; }
+        .first-color { background: linear-gradient(135deg, #155263, #1e6b7e); } /* 亮色模式漸層 */
         .second-color { background: #ff6f3c; }
         .third-color { background: #ff9a3c; }
         .fourth-color { background: #ffc93c; }
         .gradient-bg { background: linear-gradient(135deg, #155263, #ff6f3c); }
+        /* 暗色模式 Hero 漸層：深藍黑到石板藍灰，舒適不刺眼 */
+        [data-theme="dark"] .gradient-bg { background: linear-gradient(135deg, #0D1F2D, #546A7B); }
+        
+        /* 暗色模式 footer 漸層：使用 C49991 暖棕色系 */
+        [data-theme="dark"] .first-color { background: linear-gradient(135deg, #0D1F2D, #C49991); }
+        
+        /* 暗色模式變數 */
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9fafb;
+            --bg-card: #ffffff;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --text-muted: #9ca3af;
+            --border-color: #e5e7eb;
+            --timeline-color: #155263;
+            --timeline-bg: #155263;
+            --timeline-item-bg: #f9fafb;
+            --skill-bg: #e5e7eb;
+            --navbar-bg: #ffffff;
+            --navbar-text: #374151;
+            --navbar-shadow: rgba(0, 0, 0, 0.1);
+            --hover-bg: #fff5f0;
+            --modal-bg: #ffffff;
+            --modal-input-bg: #ffffff;
+            --modal-input-border: #d1d5db;
+            --shadow-sm: rgba(0, 0, 0, 0.1);
+            --shadow-md: rgba(0, 0, 0, 0.15);
+            --shadow-lg: rgba(0, 0, 0, 0.2);
+            --card-hover-shadow: rgba(0, 0, 0, 0.15);
+        }
+        
+        [data-theme="dark"] {
+            --bg-primary: #0D1F2D;
+            --bg-secondary: #546A7B;
+            --bg-card: #546A7B;
+            --text-primary: #FAE1DF;
+            --text-secondary: #E4C3AD;
+            --text-muted: #9EA3B0;
+            --border-color: #9EA3B0;
+            --timeline-color: #E4C3AD;
+            --timeline-bg: #9EA3B0;
+            --timeline-item-bg: #3a4f5e; /* 更深色調，與主卡片產生對比 */
+            --skill-bg: #546A7B; /* 深一階，與進度條三色有明確對比 */
+            --navbar-bg: #0D1F2D;
+            --navbar-text: #FAE1DF;
+            --navbar-shadow: rgba(13, 31, 45, 0.8);
+            --hover-bg: rgba(228, 195, 173, 0.15);
+            --modal-bg: #546A7B;
+            --modal-input-bg: #0D1F2D;
+            --modal-input-border: #9EA3B0;
+            --shadow-sm: rgba(0, 0, 0, 0.3);
+            --shadow-md: rgba(0, 0, 0, 0.4);
+            --shadow-lg: rgba(0, 0, 0, 0.5);
+            --card-hover-shadow: rgba(228, 195, 173, 0.2);
+        }
+        
+        /* 主題切換按鈕樣式 */
+        .theme-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #155263, #ff6f3c);
+            border-radius: 50%;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            z-index: 5000; /* 高於手機導覽列(1030)，低於 Modal(9999) */
+        }
+        
+        [data-theme="dark"] .theme-toggle {
+            background: linear-gradient(135deg, #546A7B, #E4C3AD);
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+        
+        .theme-toggle:active {
+            transform: scale(0.95);
+        }
+        
+        .theme-icon {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        .theme-icon.hidden {
+            opacity: 0;
+            transform: scale(0);
+            position: absolute;
+        }
         
         /* 防止瀏覽器在聚焦表單欄位時自動放大縮放（行動與桌機皆適用） */
         html {
@@ -21,6 +121,13 @@
             -webkit-text-size-adjust: 100%;
             /* 穩定保留捲軸空間，避免出現/消失造成版面寬度改變（桌機常見）*/
             scrollbar-gutter: stable;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         input, select, textarea, button {
             font-size: 16px; /* >=16px 可避免 iOS/部分瀏覽器自動縮放 */
@@ -38,19 +145,28 @@
             top: 0;
             bottom: 0;
             width: 4px;
-            background: #155263;
+            background: var(--timeline-bg);
             border-radius: 20px;
+            transition: background 0.3s ease;
         }
 
         /* 時間軸項目 */
         .timeline-item {
             position: relative;
             margin-bottom: 2rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: var(--timeline-item-bg) !important;
+            color: var(--text-primary);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
         }
         .timeline-item:hover {
             transform: translateX(12px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 6px 16px var(--shadow-md);
+        }
+        .timeline-item h3 {
+            color: var(--text-primary);
+        }
+        .timeline-item p {
+            color: var(--text-muted) !important;
         }
 
         /* 連接線 */
@@ -60,8 +176,9 @@
             top: 2rem;
             width: 2rem;
             height: 2px;
-            background: #155263;
+            background: var(--timeline-color);
             opacity: 0.3;
+            transition: background 0.3s ease;
         }
 
         /* 圖示圓圈 */
@@ -86,11 +203,43 @@
 
         /* 卡片樣式 */
         .card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: var(--bg-card) !important;
+            color: var(--text-primary);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
         }
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 24px var(--card-hover-shadow);
+        }
+        /* 保留原本 text-white 樣式的標題 (亮色模式不強制覆蓋) */
+        /* 暗色模式下「彩色背景區塊」的標題改為黑色以增加辨識度 */
+        /* 但時間軸等一般卡片內容的 h3 需要保持亮色 */
+        [data-theme="dark"] .second-color h2,
+        [data-theme="dark"] .third-color h2,
+        [data-theme="dark"] .fourth-color h2 {
+            color: #0D1F2D !important;
+        }
+        /* 時間軸 h3 在暗色模式使用亮色 */
+        [data-theme="dark"] .timeline-item h3 {
+            color: #FAE1DF !important;
+        }
+        [data-theme="dark"] .timeline-item p {
+            color: #E4C3AD !important;
+        }
+        .card p, .card div, .card li {
+            color: var(--text-secondary) !important;
+        }
+        .card .text-gray-600 {
+            color: var(--text-secondary) !important;
+        }
+        .card .leading-relaxed p {
+            color: var(--text-secondary) !important;
+        }
+        .card ul li {
+            color: var(--text-secondary) !important;
+        }
+        .card ul li:hover {
+            color: #ff6f3c !important;
         }
 
         @keyframes fadeInUp {
@@ -117,20 +266,35 @@
         #navbar.show {
             transform: translateY(0);
         }
-        .nav-link {
+        /* 僅在暗色模式覆蓋導覽列連結顏色，亮色保持原本樣式 */
+        [data-theme="dark"] .nav-link {
+            color: var(--navbar-text) !important;
             transition: all 0.3s ease;
         }
         .nav-link:hover {
-            color: #ff6f3c;
+            color: #ff6f3c !important;
             transform: translateY(-2px);
         }
 
         /* 漢堡選單樣式 */
         #mobile-navbar {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background: var(--navbar-bg);
+            box-shadow: 0 2px 10px var(--navbar-shadow);
             z-index: 1030;
             position: relative;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        #navbar {
+            background: var(--navbar-bg) !important;
+            box-shadow: 0 2px 10px var(--navbar-shadow) !important;
+            transition: transform 0.3s ease-in-out, background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        #desktop-navbar {
+            background: var(--navbar-bg) !important;
+            box-shadow: 0 2px 4px var(--navbar-shadow) !important;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
         
         .mobile-nav-container {
@@ -194,7 +358,7 @@
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease-in-out;
-            background: white;
+            background: var(--navbar-bg);
         }
         
         .mobile-menu-content.open {
@@ -209,7 +373,7 @@
         
         .mobile-nav-link {
             padding: 14px 20px;
-            color: #374151;
+            color: var(--text-primary);
             text-decoration: none;
             display: block;
             transition: all 0.3s ease;
@@ -220,7 +384,7 @@
         
         .mobile-nav-link:hover,
         .mobile-nav-link:active {
-            background-color: #fff5f0;
+            background-color: var(--hover-bg);
             border-left-color: #ff6f3c;
             color: #ff6f3c;
             text-decoration: none;
@@ -262,8 +426,15 @@
         
         .skill-circle .background {
             fill: none;
-            stroke: #e5e7eb;
+            stroke: var(--skill-bg);
             stroke-width: 8;
+            transition: stroke 0.3s ease;
+        }
+        
+        /* 暗色模式技能圖表底圈使用較淺顏色以清晰呈現百分比基準 */
+        [data-theme="dark"] .skill-circle .background {
+            stroke: #3a4f5e;
+            opacity: 0.5;
         }
         
         .skill-circle .progress {
@@ -276,6 +447,16 @@
         .skill-circle .progress.orange { stroke: #ff6f3c; }
         .skill-circle .progress.blue { stroke: #155263; }
         .skill-circle .progress.green { stroke: #10b981; }
+        /* 暗色模式技能進度條顏色調整：三色更舒適 */
+        [data-theme="dark"] .skill-circle .progress.orange { /* 溫暖沙色：主視覺 */
+            stroke: #E4C3AD;
+        }
+        [data-theme="dark"] .skill-circle .progress.blue { /* 柔和粉暈：次視覺 */
+            stroke: #FAE1DF;
+        }
+        [data-theme="dark"] .skill-circle .progress.green { /* 冷灰藍：輔助 */
+            stroke: #9EA3B0;
+        }
         
         .skill-name {
             position: absolute;
@@ -284,14 +465,107 @@
             transform: translate(-50%, -50%);
             text-align: center;
             font-weight: 600;
-            color: #374151;
+            color: var(--text-primary);
             font-size: 0.85rem;
             white-space: nowrap;
+            transition: color 0.3s ease;
         }
         /* 小螢幕下縮小圓圈尺寸，讓三欄排版更舒適 */
         @media (max-width: 639px) {
             .skill-circle { width: 96px; height: 96px; }
             .skill-name { font-size: 0.75rem; }
+        }
+        
+        /* Modal 暗色模式樣式 */
+        #contactModal .bg-white {
+            background-color: var(--modal-bg) !important;
+        }
+        
+        #contactModal label {
+            color: var(--text-primary) !important;
+        }
+        
+        #contactModal input,
+        #contactModal textarea {
+            background-color: var(--modal-input-bg) !important;
+            border-color: var(--modal-input-border) !important;
+            color: var(--text-primary) !important;
+            transition: all 0.3s ease;
+        }
+        
+        #contactModal input::placeholder,
+        #contactModal textarea::placeholder {
+            color: var(--text-muted) !important;
+        }
+        
+        #contactModal input:hover,
+        #contactModal textarea:hover {
+            border-color: var(--text-secondary) !important;
+        }
+        
+        [data-theme="dark"] #contactModal input:focus,
+        [data-theme="dark"] #contactModal textarea:focus {
+            border-color: #E4C3AD !important;
+            box-shadow: 0 0 0 2px rgba(228, 195, 173, 0.3) !important;
+        }
+        
+        /* 暗色模式中文字顏色對應 Tailwind 公用類，亮色維持原樣 */
+        [data-theme="dark"] .text-gray-700 {
+            color: var(--text-primary) !important;
+        }
+        
+        [data-theme="dark"] .text-gray-600 {
+            color: var(--text-secondary) !important;
+        }
+        
+        [data-theme="dark"] .text-gray-500 {
+            color: var(--text-muted) !important;
+        }
+        
+        /* 背景顏色 */
+        .bg-gray-50 {
+            background-color: #f9fafb !important; /* 亮色模式保持淡灰色 */
+        }
+        
+        [data-theme="dark"] .bg-gray-50 {
+            background-color: var(--timeline-item-bg) !important; /* 暗色模式使用變數 */
+        }
+        
+        .bg-white {
+            background-color: var(--bg-card) !important;
+        }
+        
+        [data-theme="dark"] .bg-white {
+            background-color: var(--bg-card) !important;
+        }
+        
+        /* 陰影效果 */
+        .shadow-md, .shadow-lg {
+            box-shadow: 0 4px 12px var(--shadow-md) !important;
+        }
+        
+        .shadow-2xl {
+            box-shadow: 0 8px 32px var(--shadow-lg) !important;
+        }
+
+        /* 亮色模式：彩色背景區塊內的 icon 維持白色 */
+        .second-color i,
+        .third-color i,
+        .fourth-color i,
+        .second-color .fas,
+        .third-color .fas,
+        .fourth-color .fas {
+            color: #ffffff !important;
+        }
+
+        /* 暗色模式中彩色背景區塊內的 icon 改為黑色以提升辨識度 */
+        [data-theme="dark"] .second-color i,
+        [data-theme="dark"] .third-color i,
+        [data-theme="dark"] .fourth-color i,
+        [data-theme="dark"] .second-color .fas,
+        [data-theme="dark"] .third-color .fas,
+        [data-theme="dark"] .fourth-color .fas {
+            color: #0D1F2D !important;
         }
         
         @keyframes skillAnimation {
@@ -301,7 +575,7 @@
         }
     </style>
 </head>
-<body class="font-sans text-gray-800 bg-gray-50">
+<body class="font-sans" style="background-color: var(--bg-primary); color: var(--text-primary);">
     <div class="min-h-screen flex flex-col">
         <!-- Header -->
         <header class="gradient-bg text-white py-12 relative">
@@ -561,7 +835,7 @@
                             <div class="timeline-item bg-gray-50 p-5 rounded-lg">
                                 <div class="timeline-connector"></div>
                                 <div class="timeline-icon fourth-color">
-                                    <i class="fas fa-presentation"></i>
+                                    <i class="fas fa-chalkboard-user"></i>
                                 </div>
                                 <h3 class="text-lg font-semibold">極客魂 | 社團成果發表</h3>
                                 <p class="text-sm text-gray-500">2025/11</p>
@@ -765,7 +1039,7 @@
                     <section id="programming" class="bg-white p-8 rounded-xl shadow-lg card animate-fadeInUp" style="animation-delay: 0.8s;">
                         <h2 class="text-2xl font-bold fourth-color text-white p-4 rounded-lg">程式經歷時間軸</h2>
                         <div class="mt-6 timeline-container">
-                            <!-- Python-tkinter | 發票兌獎小工具 -->
+                            <!-- 2022/09 - Python-tkinter | 發票兌獎小工具 -->
                             <div class="timeline-item bg-gray-50 p-5 rounded-lg">
                                 <div class="timeline-icon second-color">
                                     <i class="fas fa-receipt"></i>
@@ -774,97 +1048,7 @@
                                 <p class="text-sm text-gray-500">2022/09 - 2022/10</p>
                             </div>
 
-                            <!-- Python-pygame | 乒乓球小遊戲 -->
-                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
-                                <div class="timeline-connector"></div>
-                                <div class="timeline-icon second-color">
-                                    <i class="fas fa-table-tennis-paddle-ball"></i>
-                                </div>
-                                <h3 class="text-lg font-semibold">Python-pygame | 乒乓球小遊戲</h3>
-                                <p class="text-sm text-gray-500">2023/09 - 2023/10</p>
-                            </div>
-
-                            <!-- Python-pygame | Flappy Bird 小遊戲 -->
-                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
-                                <div class="timeline-connector"></div>
-                                <div class="timeline-icon second-color">
-                                    <i class="fas fa-dove"></i>
-                                </div>
-                                <h3 class="text-lg font-semibold">Python-pygame | Flappy Bird 小遊戲</h3>
-                                <p class="text-sm text-gray-500">2023/10 - 2023/11</p>
-                            </div>
-
-                            <!-- C#-Unity | 下樓梯小遊戲 -->
-                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
-                                <div class="timeline-connector"></div>
-                                <div class="timeline-icon second-color">
-                                    <i class="fas fa-stairs"></i>
-                                </div>
-                                <h3 class="text-lg font-semibold">C#-Unity | 下樓梯小遊戲</h3>
-                                <p class="text-sm text-gray-500">2024/01 - 2024/03</p>
-                            </div>
-
-                            <!-- C#-Unity | 貪吃蛇小遊戲 -->
-                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
-                                <div class="timeline-connector"></div>
-                                <div class="timeline-icon second-color">
-                                    <i class="fas fa-worm"></i>
-                                </div>
-                                <h3 class="text-lg font-semibold">C#-Unity | 貪吃蛇小遊戲</h3>
-                                <p class="text-sm text-gray-500">2024/08 - 2024/09</p>
-                            </div>
-
-                            <!-- Python-opencv | 馬克筆小專案 -->
-                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
-                                <div class="timeline-connector"></div>
-                                <div class="timeline-icon second-color">
-                                    <i class="fas fa-pen"></i>
-                                </div>
-                                <h3 class="text-lg font-semibold">Python-opencv | 馬克筆小專案</h3>
-                                <p class="text-sm text-gray-500">2025/01 - 2025/03</p>
-                            </div>
-
-                            <!-- C#-Windows Form | 踩地雷遊戲專案 -->
-                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
-                                <div class="timeline-connector"></div>
-                                <div class="timeline-icon second-color">
-                                    <i class="fas fa-bomb"></i>
-                                </div>
-                                <h3 class="text-lg font-semibold">C#-Windows Form | 踩地雷遊戲專案</h3>
-                                <p class="text-sm text-gray-500">2025/04 - 2025/06</p>
-                            </div>
-
-                            <!-- JavaScript | 演算法學習中 -->
-                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
-                                <div class="timeline-connector"></div>
-                                <div class="timeline-icon second-color">
-                                    <i class="fas fa-code"></i>
-                                </div>
-                                <h3 class="text-lg font-semibold">JavaScript | 演算法學習中</h3>
-                                <p class="text-sm text-gray-500">2025/08 - Present</p>
-                            </div>
-
-                            <!-- C#-Unity | 神棄之森 Forsaken Forest -->
-                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
-                                <div class="timeline-connector"></div>
-                                <div class="timeline-icon second-color">
-                                    <i class="fas fa-tree"></i>
-                                </div>
-                                <h3 class="text-lg font-semibold">C#-Unity | 神棄之森 Forsaken Forest (製作中)</h3>
-                                <p class="text-sm text-gray-500">2025/09 - Present</p>
-                            </div>
-
-                            <!-- Python-Flask | 個人履歷網站 -->
-                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
-                                <div class="timeline-connector"></div>
-                                <div class="timeline-icon second-color">
-                                    <i class="fas fa-globe"></i>
-                                </div>
-                                <h3 class="text-lg font-semibold">Python-Flask | 個人履歷網站</h3>
-                                <p class="text-sm text-gray-500">2024/05 - 2024/06</p>
-                            </div>
-
-                            <!-- Python-爬蟲 | 資料蒐集自動化 -->
+                            <!-- 2023/06 - Python-爬蟲 | 資料蒐集自動化 -->
                             <div class="timeline-item bg-gray-50 p-5 rounded-lg">
                                 <div class="timeline-connector"></div>
                                 <div class="timeline-icon second-color">
@@ -874,27 +1058,57 @@
                                 <p class="text-sm text-gray-500">2023/06 - 2023/07</p>
                             </div>
 
-                            <!-- C#-Unity | 2D RPG 遊戲原型 -->
+                            <!-- 2023/09 - Python-pygame | 乒乓球小遊戲 -->
                             <div class="timeline-item bg-gray-50 p-5 rounded-lg">
                                 <div class="timeline-connector"></div>
                                 <div class="timeline-icon second-color">
-                                    <i class="fas fa-gamepad"></i>
+                                    <i class="fas fa-table-tennis-paddle-ball"></i>
                                 </div>
-                                <h3 class="text-lg font-semibold">C#-Unity | 2D RPG 遊戲原型</h3>
-                                <p class="text-sm text-gray-500">2025/10 - 2025/11</p>
+                                <h3 class="text-lg font-semibold">Python-pygame | 乒乓球小遊戲</h3>
+                                <p class="text-sm text-gray-500">2023/09 - 2023/10</p>
                             </div>
 
-                            <!-- JavaScript-Vue | 前端互動練習 -->
+                            <!-- 2023/10 - Python-pygame | Flappy Bird 小遊戲 -->
                             <div class="timeline-item bg-gray-50 p-5 rounded-lg">
                                 <div class="timeline-connector"></div>
                                 <div class="timeline-icon second-color">
-                                    <i class="fas fa-laptop-code"></i>
+                                    <i class="fas fa-dove"></i>
                                 </div>
-                                <h3 class="text-lg font-semibold">JavaScript-Vue | 前端互動練習</h3>
-                                <p class="text-sm text-gray-500">2025/07 - 2025/08</p>
+                                <h3 class="text-lg font-semibold">Python-pygame | Flappy Bird 小遊戲</h3>
+                                <p class="text-sm text-gray-500">2023/10 - 2023/11</p>
                             </div>
 
-                            <!-- SQL | 學生選課系統資料庫設計 -->
+                            <!-- 2024/01 - C#-Unity | 下樓梯小遊戲 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <i class="fas fa-stairs"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">C#-Unity | 下樓梯小遊戲</h3>
+                                <p class="text-sm text-gray-500">2024/01 - 2024/03</p>
+                            </div>
+
+                            <!-- 2024/05 - Python-Flask | 個人履歷網站 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <i class="fas fa-globe"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">Python-Flask | 個人履歷網站</h3>
+                                <p class="text-sm text-gray-500">2024/05 - 2024/06</p>
+                            </div>
+
+                            <!-- 2024/08 - C#-Unity | 貪吃蛇小遊戲 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <i class="fas fa-worm"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">C#-Unity | 貪吃蛇小遊戲</h3>
+                                <p class="text-sm text-gray-500">2024/08 - 2024/09</p>
+                            </div>
+
+                            <!-- 2024/09 - SQL | 學生選課系統資料庫設計 -->
                             <div class="timeline-item bg-gray-50 p-5 rounded-lg">
                                 <div class="timeline-connector"></div>
                                 <div class="timeline-icon second-color">
@@ -904,27 +1118,7 @@
                                 <p class="text-sm text-gray-500">2024/09 - 2024/10</p>
                             </div>
 
-                            <!-- HTML/CSS/JS | 響應式個人作品集網站 -->
-                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
-                                <div class="timeline-connector"></div>
-                                <div class="timeline-icon second-color">
-                                    <i class="fas fa-code"></i>
-                                </div>
-                                <h3 class="text-lg font-semibold">HTML/CSS/JS | 響應式個人作品集網站</h3>
-                                <p class="text-sm text-gray-500">2025/02 - 2025/03</p>
-                            </div>
-
-                            <!-- Python-OpenAI API | AI 聊天機器人 -->
-                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
-                                <div class="timeline-connector"></div>
-                                <div class="timeline-icon second-color">
-                                    <i class="fas fa-robot"></i>
-                                </div>
-                                <h3 class="text-lg font-semibold">Python-OpenAI API | AI 聊天機器人</h3>
-                                <p class="text-sm text-gray-500">2025/05</p>
-                            </div>
-
-                            <!-- Python-Pandas | 校內問卷資料分析 -->
+                            <!-- 2024/11 - Python-Pandas | 校內問卷資料分析 -->
                             <div class="timeline-item bg-gray-50 p-5 rounded-lg">
                                 <div class="timeline-connector"></div>
                                 <div class="timeline-icon second-color">
@@ -934,17 +1128,27 @@
                                 <p class="text-sm text-gray-500">2024/11</p>
                             </div>
 
-                            <!-- Unity | 物理模擬小遊戲 -->
+                            <!-- 2025/01 - Python-opencv | 馬克筆小專案 -->
                             <div class="timeline-item bg-gray-50 p-5 rounded-lg">
                                 <div class="timeline-connector"></div>
                                 <div class="timeline-icon second-color">
-                                    <i class="fas fa-atom"></i>
+                                    <i class="fas fa-pen"></i>
                                 </div>
-                                <h3 class="text-lg font-semibold">Unity | 物理模擬小遊戲</h3>
-                                <p class="text-sm text-gray-500">2025/06</p>
+                                <h3 class="text-lg font-semibold">Python-opencv | 馬克筆小專案</h3>
+                                <p class="text-sm text-gray-500">2025/01 - 2025/03</p>
                             </div>
 
-                            <!-- JavaScript-Chart.js | 資料視覺化專案 -->
+                            <!-- 2025/02 - HTML/CSS/JS | 響應式個人作品集網站 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">HTML/CSS/JS | 響應式個人作品集網站</h3>
+                                <p class="text-sm text-gray-500">2025/02 - 2025/03</p>
+                            </div>
+
+                            <!-- 2025/04 - JavaScript-Chart.js | 資料視覺化專案 -->
                             <div class="timeline-item bg-gray-50 p-5 rounded-lg">
                                 <div class="timeline-connector"></div>
                                 <div class="timeline-icon second-color">
@@ -954,7 +1158,47 @@
                                 <p class="text-sm text-gray-500">2025/04</p>
                             </div>
 
-                            <!-- Python-Django | 簡易部落格平台 -->
+                            <!-- 2025/04 - C#-Windows Form | 踩地雷遊戲專案 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <i class="fas fa-bomb"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">C#-Windows Form | 踩地雷遊戲專案</h3>
+                                <p class="text-sm text-gray-500">2025/04 - 2025/06</p>
+                            </div>
+
+                            <!-- 2025/05 - Python-OpenAI API | AI 聊天機器人 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">Python-OpenAI API | AI 聊天機器人</h3>
+                                <p class="text-sm text-gray-500">2025/05</p>
+                            </div>
+
+                            <!-- 2025/06 - Unity | 物理模擬小遊戲 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <i class="fas fa-atom"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">Unity | 物理模擬小遊戲</h3>
+                                <p class="text-sm text-gray-500">2025/06</p>
+                            </div>
+
+                            <!-- 2025/07 - JavaScript-Vue | 前端互動練習 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <i class="fas fa-laptop-code"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">JavaScript-Vue | 前端互動練習</h3>
+                                <p class="text-sm text-gray-500">2025/07 - 2025/08</p>
+                            </div>
+
+                            <!-- 2025/07 - Python-Django | 簡易部落格平台 -->
                             <div class="timeline-item bg-gray-50 p-5 rounded-lg">
                                 <div class="timeline-connector"></div>
                                 <div class="timeline-icon second-color">
@@ -964,7 +1208,37 @@
                                 <p class="text-sm text-gray-500">2025/07</p>
                             </div>
 
-                            <!-- C#-Unity | 多人連線遊戲雛型 -->
+                            <!-- 2025/08 - JavaScript | 演算法學習中 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">JavaScript | 演算法學習中</h3>
+                                <p class="text-sm text-gray-500">2025/08 - Present</p>
+                            </div>
+
+                            <!-- 2025/09 - C#-Unity | 神棄之森 Forsaken Forest -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <i class="fas fa-tree"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">C#-Unity | 神棄之森 Forsaken Forest (製作中)</h3>
+                                <p class="text-sm text-gray-500">2025/09 - Present</p>
+                            </div>
+
+                            <!-- 2025/10 - C#-Unity | 2D RPG 遊戲原型 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">C#-Unity | 2D RPG 遊戲原型</h3>
+                                <p class="text-sm text-gray-500">2025/10 - 2025/11</p>
+                            </div>
+
+                            <!-- 2025/11 - C#-Unity | 多人連線遊戲雛型 -->
                             <div class="timeline-item bg-gray-50 p-5 rounded-lg">
                                 <div class="timeline-connector"></div>
                                 <div class="timeline-icon second-color">
@@ -1103,7 +1377,7 @@
                             <div class="timeline-item bg-gray-50 p-5 rounded-lg">
                                 <div class="timeline-connector"></div>
                                 <div class="timeline-icon fourth-color">
-                                    <i class="fas fa-presentation"></i>
+                                    <i class="fas fa-chalkboard-user"></i>
                                 </div>
                                 <h3 class="text-lg font-semibold">極客魂 | 社團成果發表</h3>
                                 <p class="text-sm text-gray-500">2025/11</p>
@@ -1424,6 +1698,12 @@
         </div>
     </div>
 
+    <!-- 主題切換按鈕 -->
+    <button id="themeToggle" class="theme-toggle" aria-label="切換主題">
+        <i id="moonIcon" class="fas fa-moon theme-icon"></i>
+        <i id="sunIcon" class="fas fa-sun theme-icon hidden"></i>
+    </button>
+
     <script>
         $(document).ready(function() {
             let lastScrollTop = 0;
@@ -1641,6 +1921,38 @@
                 this.reset();
                 closeModal();
             });
+
+            // 主題切換功能
+            const themeToggle = document.getElementById('themeToggle');
+            const sunIcon = document.getElementById('sunIcon');
+            const moonIcon = document.getElementById('moonIcon');
+            const html = document.documentElement;
+
+            // 從 localStorage 讀取主題設定
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            html.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+
+            // 主題切換事件
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = html.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeIcon(newTheme);
+            });
+
+            // 更新圖示顯示
+            function updateThemeIcon(theme) {
+                if (theme === 'dark') {
+                    sunIcon.classList.remove('hidden');
+                    moonIcon.classList.add('hidden');
+                } else {
+                    sunIcon.classList.add('hidden');
+                    moonIcon.classList.remove('hidden');
+                }
+            }
         });
     </script>
 </body>
