@@ -288,6 +288,11 @@
             font-size: 0.85rem;
             white-space: nowrap;
         }
+        /* 小螢幕下縮小圓圈尺寸，讓三欄排版更舒適 */
+        @media (max-width: 639px) {
+            .skill-circle { width: 96px; height: 96px; }
+            .skill-name { font-size: 0.75rem; }
+        }
         
         @keyframes skillAnimation {
             from {
@@ -586,7 +591,7 @@
                 <!-- Right Column: Skills + Programming Timeline + Club Timeline (Mobile Only) -->
                 <div class="lg:col-span-2 space-y-8">
                     <!-- Skills Section (Desktop Only) -->
-                    <section class="bg-white p-8 rounded-xl shadow-lg card animate-fadeInUp hidden lg:block" style="animation-delay: 0.6s;">
+                    <section id="skills-desktop" class="bg-white p-8 rounded-xl shadow-lg card animate-fadeInUp hidden lg:block" style="animation-delay: 0.6s;">
                         <h2 class="text-2xl font-bold fourth-color text-white p-4 rounded-lg mb-6">技能專長</h2>
                         <div class="grid grid-cols-5 gap-6">
                             <!-- Python: 90% -->
@@ -1108,6 +1113,188 @@
                 </div>
             </div>
         </main>
+
+        <!-- Skills Section (Mobile & Tablet Only) -->
+        <section id="skills-mobile" class="bg-white py-12 lg:hidden">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold fourth-color text-white p-4 rounded-lg mb-8 text-center">技能專長</h2>
+                <div class="space-y-10 max-w-4xl mx-auto">
+                    <!-- Orange group -->
+                    <div class="flex flex-wrap justify-center gap-4 sm:gap-6">
+                        <!-- Python: 90% -->
+                        <div class="skill-item w-1/3">
+                            <div class="skill-circle">
+                                <svg viewBox="0 0 100 100">
+                                    <circle class="background" cx="50" cy="50" r="45"></circle>
+                                    <circle class="progress orange" cx="50" cy="50" r="45" stroke-dasharray="254.34, 314.16"></circle>
+                                </svg>
+                                <div class="skill-name">Python</div>
+                            </div>
+                        </div>
+                        
+                        <!-- JavaScript: 80% -->
+                        <div class="skill-item w-1/3">
+                            <div class="skill-circle">
+                                <svg viewBox="0 0 100 100">
+                                    <circle class="background" cx="50" cy="50" r="45"></circle>
+                                    <circle class="progress orange" cx="50" cy="50" r="45" stroke-dasharray="226.08, 314.16"></circle>
+                                </svg>
+                                <div class="skill-name">JavaScript</div>
+                            </div>
+                        </div>
+                        
+                        <!-- C#: 75% -->
+                        <div class="skill-item w-1/3">
+                            <div class="skill-circle">
+                                <svg viewBox="0 0 100 100">
+                                    <circle class="background" cx="50" cy="50" r="45"></circle>
+                                    <circle class="progress orange" cx="50" cy="50" r="45" stroke-dasharray="211.95, 314.16"></circle>
+                                </svg>
+                                <div class="skill-name">C#</div>
+                            </div>
+                        </div>
+                        
+                        <!-- HTML/CSS: 50% -->
+                        <div class="skill-item w-1/3">
+                            <div class="skill-circle">
+                                <svg viewBox="0 0 100 100">
+                                    <circle class="background" cx="50" cy="50" r="45"></circle>
+                                    <circle class="progress orange" cx="50" cy="50" r="45" stroke-dasharray="141.30, 314.16"></circle>
+                                </svg>
+                                <div class="skill-name">HTML/CSS</div>
+                            </div>
+                        </div>
+                        
+                        <!-- SQL: 50% -->
+                        <div class="skill-item w-1/3">
+                            <div class="skill-circle">
+                                <svg viewBox="0 0 100 100">
+                                    <circle class="background" cx="50" cy="50" r="45"></circle>
+                                    <circle class="progress orange" cx="50" cy="50" r="45" stroke-dasharray="141.30, 314.16"></circle>
+                                </svg>
+                                <div class="skill-name">SQL</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blue group -->
+                    <div class="flex flex-wrap justify-center gap-4 sm:gap-6">
+                        <!-- Unity 2D: 90% -->
+                        <div class="skill-item w-1/3">
+                            <div class="skill-circle">
+                                <svg viewBox="0 0 100 100">
+                                    <circle class="background" cx="50" cy="50" r="45"></circle>
+                                    <circle class="progress blue" cx="50" cy="50" r="45" stroke-dasharray="254.34, 314.16"></circle>
+                                </svg>
+                                <div class="skill-name">Unity 2D</div>
+                            </div>
+                        </div>
+                        
+                        <!-- tkinter: 85% -->
+                        <div class="skill-item w-1/3">
+                            <div class="skill-circle">
+                                <svg viewBox="0 0 100 100">
+                                    <circle class="background" cx="50" cy="50" r="45"></circle>
+                                    <circle class="progress blue" cx="50" cy="50" r="45" stroke-dasharray="240.21, 314.16"></circle>
+                                </svg>
+                                <div class="skill-name">tkinter</div>
+                            </div>
+                        </div>
+                        
+                        <!-- pygame: 85% -->
+                        <div class="skill-item w-1/3">
+                            <div class="skill-circle">
+                                <svg viewBox="0 0 100 100">
+                                    <circle class="background" cx="50" cy="50" r="45"></circle>
+                                    <circle class="progress blue" cx="50" cy="50" r="45" stroke-dasharray="240.21, 314.16"></circle>
+                                </svg>
+                                <div class="skill-name">pygame</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Pandas: 84% -->
+                        <div class="skill-item w-1/3">
+                            <div class="skill-circle">
+                                <svg viewBox="0 0 100 100">
+                                    <circle class="background" cx="50" cy="50" r="45"></circle>
+                                    <circle class="progress blue" cx="50" cy="50" r="45" stroke-dasharray="237.38, 314.16"></circle>
+                                </svg>
+                                <div class="skill-name">Pandas</div>
+                            </div>
+                        </div>
+                        
+                        <!-- OpenCV: 81% -->
+                        <div class="skill-item w-1/3">
+                            <div class="skill-circle">
+                                <svg viewBox="0 0 100 100">
+                                    <circle class="background" cx="50" cy="50" r="45"></circle>
+                                    <circle class="progress blue" cx="50" cy="50" r="45" stroke-dasharray="228.91, 314.16"></circle>
+                                </svg>
+                                <div class="skill-name">OpenCV</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Green group -->
+                    <div class="flex flex-wrap justify-center gap-4 sm:gap-6">
+                        <!-- Vue: 79% -->
+                        <div class="skill-item w-1/3">
+                            <div class="skill-circle">
+                                <svg viewBox="0 0 100 100">
+                                    <circle class="background" cx="50" cy="50" r="45"></circle>
+                                    <circle class="progress green" cx="50" cy="50" r="45" stroke-dasharray="223.25, 314.16"></circle>
+                                </svg>
+                                <div class="skill-name">Vue</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Flask: 75% -->
+                        <div class="skill-item w-1/3">
+                            <div class="skill-circle">
+                                <svg viewBox="0 0 100 100">
+                                    <circle class="background" cx="50" cy="50" r="45"></circle>
+                                    <circle class="progress green" cx="50" cy="50" r="45" stroke-dasharray="211.95, 314.16"></circle>
+                                </svg>
+                                <div class="skill-name">Flask</div>
+                            </div>
+                        </div>
+                        
+                        <!-- OpenAI API: 70% -->
+                        <div class="skill-item w-1/3">
+                            <div class="skill-circle">
+                                <svg viewBox="0 0 100 100">
+                                    <circle class="background" cx="50" cy="50" r="45"></circle>
+                                    <circle class="progress green" cx="50" cy="50" r="45" stroke-dasharray="197.82, 314.16"></circle>
+                                </svg>
+                                <div class="skill-name">OpenAI API</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Charts: 70% -->
+                        <div class="skill-item w-1/3">
+                            <div class="skill-circle">
+                                <svg viewBox="0 0 100 100">
+                                    <circle class="background" cx="50" cy="50" r="45"></circle>
+                                    <circle class="progress green" cx="50" cy="50" r="45" stroke-dasharray="197.82, 314.16"></circle>
+                                </svg>
+                                <div class="skill-name">Charts</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Django: 65% -->
+                        <div class="skill-item w-1/3">
+                            <div class="skill-circle">
+                                <svg viewBox="0 0 100 100">
+                                    <circle class="background" cx="50" cy="50" r="45"></circle>
+                                    <circle class="progress green" cx="50" cy="50" r="45" stroke-dasharray="183.69, 314.16"></circle>
+                                </svg>
+                                <div class="skill-name">Django</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Footer -->
         <footer class="first-color text-white py-8">
