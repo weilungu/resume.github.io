@@ -298,7 +298,7 @@
                             <i class="fas fa-users"></i>
                             <span>社團經歷</span>
                         </a>
-                        <a href="#contact" class="mobile-nav-link">
+                        <a href="javascript:void(0)" id="mobileContactLink" class="mobile-nav-link cursor-pointer">
                             <i class="fas fa-envelope"></i>
                             <span>聯絡我</span>
                         </a>
@@ -323,7 +323,7 @@
                     <a href="#club" class="nav-link font-semibold text-gray-700 hover:text-orange-500 transition-all flex items-center">
                         <i class="fas fa-users mr-2"></i> 社團經歷
                     </a>
-                    <a href="#contact" class="nav-link font-semibold text-gray-700 hover:text-orange-500 transition-all flex items-center">
+                    <a href="javascript:void(0)" id="desktopContactLink" class="nav-link font-semibold text-gray-700 hover:text-orange-500 transition-all flex items-center cursor-pointer">
                         <i class="fas fa-envelope mr-2"></i> 聯絡我
                     </a>
                 </div>
@@ -354,7 +354,7 @@
                         <span class="hidden sm:inline">社團經歷</span>
                         <span class="sm:hidden">社團</span>
                     </a>
-                    <a href="#contact" class="nav-link px-4 py-2 text-gray-700 font-semibold hover:text-orange-500 transition-all">
+                    <a href="javascript:void(0)" id="scrollContactLink" class="nav-link px-4 py-2 text-gray-700 font-semibold hover:text-orange-500 transition-all cursor-pointer">
                         <i class="fas fa-envelope mr-2"></i>
                         <span class="hidden sm:inline">聯絡我</span>
                         <span class="sm:hidden">聯絡</span>
@@ -373,7 +373,11 @@
                     <!-- Profile -->
                     <section id="profile" class="bg-white p-8 rounded-xl shadow-lg card animate-fadeInUp">
                         <h2 class="text-2xl font-bold second-color text-white p-4 rounded-lg">個人介紹</h2>
-                        <p class="mt-4 text-gray-600 leading-relaxed">靜宜大學學生，熱衷於程式設計與音樂，持續追求技術與個人成長。</p>
+                        <div class="mt-4 text-gray-600 leading-relaxed space-y-3">
+                            <p>靜宜大學人工智慧應用學系學生，熱愛程式設計與跨領域學習，具備紮實的 Python、C#、JavaScript、HTML/CSS、SQL 等技術基礎，並積極參與各類程式專案、競賽與社團活動。</p>
+                            <p>自入學以來，持續精進演算法、人工智慧、資料分析、遊戲開發、前端與後端技術，曾獨立或協作完成多項軟體作品，展現良好的問題分析、專案管理與解決能力。</p>
+                            <p>在校期間，除課業外，積極參與「極客魂」技術社團，擔任技術長，負責推動社團技術交流、專案管理與活動規劃，並在「熱音社」學習電貝斯、電吉他及電鋼琴，培養團隊合作與溝通能力。具備良好的自我管理、跨界協作及持續學習精神，期望未來能結合資訊科技、創意與人文素養，為社會帶來更多價值。</p>
+                        </div>
                     </section>
 
                     <!-- Club Timeline (Only on Desktop) -->
@@ -399,6 +403,66 @@
                                 <p class="text-sm text-gray-500">2023/12 - Present</p>
                             </div>
 
+                            <!-- 熱音社 - 校慶演出團員 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon third-color">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">熱音社 | 校慶演出團員</h3>
+                                <p class="text-sm text-gray-500">2023/11</p>
+                            </div>
+
+                            <!-- 熱音社 - 社團成果發表會參與 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon third-color">
+                                    <i class="fas fa-microphone"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">熱音社 | 社團成果發表會參與</h3>
+                                <p class="text-sm text-gray-500">2024/06</p>
+                            </div>
+
+                            <!-- 極客魂 - 主辦校內程式競賽 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon fourth-color">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">極客魂 | 主辦校內程式競賽</h3>
+                                <p class="text-sm text-gray-500">2024/12</p>
+                            </div>
+
+                            <!-- 極客魂 - 協助社團網站建置 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon fourth-color">
+                                    <i class="fas fa-globe"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">極客魂 | 協助社團網站建置</h3>
+                                <p class="text-sm text-gray-500">2025/03</p>
+                            </div>
+
+                            <!-- 極客魂 - 校外參訪活動 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon fourth-color">
+                                    <i class="fas fa-bus"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">極客魂 | 校外參訪活動</h3>
+                                <p class="text-sm text-gray-500">2025/04</p>
+                            </div>
+
+                            <!-- 極客魂 - 技術講座協辦 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon fourth-color">
+                                    <i class="fas fa-chalkboard-teacher"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">極客魂 | 技術講座協辦</h3>
+                                <p class="text-sm text-gray-500">2025/05</p>
+                            </div>
+
                             <!-- 熱音社 - 電鋼琴 -->
                             <div class="timeline-item bg-gray-50 p-5 rounded-lg">
                                 <div class="timeline-connector"></div>
@@ -418,15 +482,54 @@
                                 <h3 class="text-lg font-semibold">極客魂 | 擔任幹部 - 技術長</h3>
                                 <p class="text-sm text-gray-500">2025/09 - Present</p>
                             </div>
+
+                            <!-- 極客魂 - 社團新生訓練規劃 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon fourth-color">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">極客魂 | 社團新生訓練規劃</h3>
+                                <p class="text-sm text-gray-500">2025/09</p>
+                            </div>
+
+                            <!-- 極客魂 - 校內 AIoT 專題競賽參賽 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon fourth-color">
+                                    <i class="fas fa-microchip"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">極客魂 | 校內 AIoT 專題競賽參賽</h3>
+                                <p class="text-sm text-gray-500">2025/10</p>
+                            </div>
+
+                            <!-- 極客魂 - 社團成果發表 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon fourth-color">
+                                    <i class="fas fa-presentation"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">極客魂 | 社團成果發表</h3>
+                                <p class="text-sm text-gray-500">2025/11</p>
+                            </div>
                         </div>
                     </section>
 
                     <!-- Certifications -->
                     <section id="certifications" class="bg-white p-8 rounded-xl shadow-lg card animate-fadeInUp" style="animation-delay: 0.4s;">
                         <h2 class="text-2xl font-bold third-color text-white p-4 rounded-lg">擁有證照</h2>
-                        <ul class="mt-4 list-disc list-inside space-y-3 text-gray-600">
-                            <li class="hover:text-ff6f3c transition-colors">ICDL - Computing 運算思維與 Python 程式設計</li>
-                            <li class="hover:text-ff6f3c transition-colors">ICDL - Artificial Intelligence 人工智慧</li>
+                        <ul class="mt-4 list-disc list-inside space-y-2 text-gray-600">
+                            <li class="hover:text-orange-500 transition-colors">ICDL - Computing 運算思維與 Python 程式設計</li>
+                            <li class="hover:text-orange-500 transition-colors">ICDL - Artificial Intelligence 人工智慧</li>
+                            <li class="hover:text-orange-500 transition-colors">TQC+ Python 程式設計</li>
+                            <li class="hover:text-orange-500 transition-colors">TQC+ 網頁設計</li>
+                            <li class="hover:text-orange-500 transition-colors">MOS Excel 專業級</li>
+                            <li class="hover:text-orange-500 transition-colors">TOEIC 英語測驗</li>
+                            <li class="hover:text-orange-500 transition-colors">資安基礎認證（CSSLP、CEH 參加經驗）</li>
+                            <li class="hover:text-orange-500 transition-colors">Google Analytics 認證</li>
+                            <li class="hover:text-orange-500 transition-colors">AWS Cloud Practitioner</li>
+                            <li class="hover:text-orange-500 transition-colors">Unity Certified Associate</li>
+                            <li class="hover:text-orange-500 transition-colors">資策會 AIoT 研習證書</li>
                         </ul>
                     </section>
                 </div>
@@ -525,6 +628,126 @@
                                 <h3 class="text-lg font-semibold">C#-Unity | 神棄之森 Forsaken Forest (製作中)</h3>
                                 <p class="text-sm text-gray-500">2025/09 - Present</p>
                             </div>
+
+                            <!-- Python-Flask | 個人履歷網站 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <i class="fas fa-globe"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">Python-Flask | 個人履歷網站</h3>
+                                <p class="text-sm text-gray-500">2024/05 - 2024/06</p>
+                            </div>
+
+                            <!-- Python-爬蟲 | 資料蒐集自動化 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <i class="fas fa-spider"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">Python-爬蟲 | 資料蒐集自動化</h3>
+                                <p class="text-sm text-gray-500">2023/06 - 2023/07</p>
+                            </div>
+
+                            <!-- C#-Unity | 2D RPG 遊戲原型 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">C#-Unity | 2D RPG 遊戲原型</h3>
+                                <p class="text-sm text-gray-500">2025/10 - 2025/11</p>
+                            </div>
+
+                            <!-- JavaScript-Vue | 前端互動練習 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <i class="fas fa-laptop-code"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">JavaScript-Vue | 前端互動練習</h3>
+                                <p class="text-sm text-gray-500">2025/07 - 2025/08</p>
+                            </div>
+
+                            <!-- SQL | 學生選課系統資料庫設計 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">SQL | 學生選課系統資料庫設計</h3>
+                                <p class="text-sm text-gray-500">2024/09 - 2024/10</p>
+                            </div>
+
+                            <!-- HTML/CSS/JS | 響應式個人作品集網站 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">HTML/CSS/JS | 響應式個人作品集網站</h3>
+                                <p class="text-sm text-gray-500">2025/02 - 2025/03</p>
+                            </div>
+
+                            <!-- Python-OpenAI API | AI 聊天機器人 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">Python-OpenAI API | AI 聊天機器人</h3>
+                                <p class="text-sm text-gray-500">2025/05</p>
+                            </div>
+
+                            <!-- Python-Pandas | 校內問卷資料分析 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <i class="fas fa-chart-bar"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">Python-Pandas | 校內問卷資料分析</h3>
+                                <p class="text-sm text-gray-500">2024/11</p>
+                            </div>
+
+                            <!-- Unity | 物理模擬小遊戲 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <i class="fas fa-atom"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">Unity | 物理模擬小遊戲</h3>
+                                <p class="text-sm text-gray-500">2025/06</p>
+                            </div>
+
+                            <!-- JavaScript-Chart.js | 資料視覺化專案 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <i class="fas fa-chart-pie"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">JavaScript-Chart.js | 資料視覺化專案</h3>
+                                <p class="text-sm text-gray-500">2025/04</p>
+                            </div>
+
+                            <!-- Python-Django | 簡易部落格平台 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <i class="fas fa-blog"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">Python-Django | 簡易部落格平台</h3>
+                                <p class="text-sm text-gray-500">2025/07</p>
+                            </div>
+
+                            <!-- C#-Unity | 多人連線遊戲雛型 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon second-color">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">C#-Unity | 多人連線遊戲雛型</h3>
+                                <p class="text-sm text-gray-500">2025/11</p>
+                            </div>
                         </div>
                     </section>
 
@@ -551,6 +774,66 @@
                                 <p class="text-sm text-gray-500">2023/12 - Present</p>
                             </div>
 
+                            <!-- 熱音社 - 校慶演出團員 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon third-color">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">熱音社 | 校慶演出團員</h3>
+                                <p class="text-sm text-gray-500">2023/11</p>
+                            </div>
+
+                            <!-- 熱音社 - 社團成果發表會參與 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon third-color">
+                                    <i class="fas fa-microphone"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">熱音社 | 社團成果發表會參與</h3>
+                                <p class="text-sm text-gray-500">2024/06</p>
+                            </div>
+
+                            <!-- 極客魂 - 主辦校內程式競賽 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon fourth-color">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">極客魂 | 主辦校內程式競賽</h3>
+                                <p class="text-sm text-gray-500">2024/12</p>
+                            </div>
+
+                            <!-- 極客魂 - 協助社團網站建置 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon fourth-color">
+                                    <i class="fas fa-globe"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">極客魂 | 協助社團網站建置</h3>
+                                <p class="text-sm text-gray-500">2025/03</p>
+                            </div>
+
+                            <!-- 極客魂 - 校外參訪活動 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon fourth-color">
+                                    <i class="fas fa-bus"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">極客魂 | 校外參訪活動</h3>
+                                <p class="text-sm text-gray-500">2025/04</p>
+                            </div>
+
+                            <!-- 極客魂 - 技術講座協辦 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon fourth-color">
+                                    <i class="fas fa-chalkboard-teacher"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">極客魂 | 技術講座協辦</h3>
+                                <p class="text-sm text-gray-500">2025/05</p>
+                            </div>
+
                             <!-- 熱音社 - 電鋼琴 -->
                             <div class="timeline-item bg-gray-50 p-5 rounded-lg">
                                 <div class="timeline-connector"></div>
@@ -569,6 +852,36 @@
                                 </div>
                                 <h3 class="text-lg font-semibold">極客魂 | 擔任幹部 - 技術長</h3>
                                 <p class="text-sm text-gray-500">2025/09 - Present</p>
+                            </div>
+
+                            <!-- 極客魂 - 社團新生訓練規劃 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon fourth-color">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">極客魂 | 社團新生訓練規劃</h3>
+                                <p class="text-sm text-gray-500">2025/09</p>
+                            </div>
+
+                            <!-- 極客魂 - 校內 AIoT 專題競賽參賽 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon fourth-color">
+                                    <i class="fas fa-microchip"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">極客魂 | 校內 AIoT 專題競賽參賽</h3>
+                                <p class="text-sm text-gray-500">2025/10</p>
+                            </div>
+
+                            <!-- 極客魂 - 社團成果發表 -->
+                            <div class="timeline-item bg-gray-50 p-5 rounded-lg">
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-icon fourth-color">
+                                    <i class="fas fa-presentation"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold">極客魂 | 社團成果發表</h3>
+                                <p class="text-sm text-gray-500">2025/11</p>
                             </div>
                         </div>
                     </section>
@@ -651,7 +964,7 @@
                             type="tel" 
                             id="modalPhone" 
                             name="phone" 
-                            placeholder="請輸入您的聯絡電話（選填）" 
+                            placeholder="請輸入您的聯絡電話" 
                             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 outline-none hover:border-gray-400"
                         >
                     </div>
@@ -861,6 +1174,23 @@
 
             // CTA 按鈕點擊事件
             $contactCTA.on('click', openModal);
+            
+            // 導覽列聯絡我連結點擊事件
+            $('#desktopContactLink, #scrollContactLink, #mobileContactLink').on('click', function(e) {
+                e.preventDefault();
+                
+                // 如果是手機選單連結，先關閉選單
+                if ($(this).attr('id') === 'mobileContactLink') {
+                    if (mobileMenu && mobileMenu.classList.contains('open')) {
+                        mobileMenu.classList.remove('open');
+                        if (hamburgerBtn) {
+                            hamburgerBtn.classList.remove('active');
+                        }
+                    }
+                }
+                
+                openModal();
+            });
 
             // 關閉按鈕點擊事件
             $closeModal.on('click', closeModal);
